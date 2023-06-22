@@ -289,4 +289,9 @@ extension NotificationManager {
     private static func remoteCarbEntryNotificationBody(amountInGrams: Double) -> String {
         return String(format: NSLocalizedString("Remote Carbs Entry: %d grams", comment: "The carb amount message for a remote carbs entry notification. (1: Carb amount in grams)"), Int(amountInGrams))
     }
+    static func addAppBadge(badge: Int) {
+        DispatchQueue.main.async {
+            UIApplication.shared.applicationIconBadgeNumber = badge
+        }
+    }
 }
