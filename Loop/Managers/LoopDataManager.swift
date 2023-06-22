@@ -570,6 +570,9 @@ extension LoopDataManager {
                     }
 
                     completion?(.success(samples))
+                    if let badgeValue = self.glucoseStore.latestGlucose?.quantity.doubleValue(for: .milligramsPerDeciliter, withRounding: true) {
+                        NotificationManager.addAppBadge(badge: Int(badgeValue))
+                    }
                 case .failure(let error):
                     completion?(.failure(error))
                 }
