@@ -48,6 +48,7 @@ class CGMStalenessMonitor {
             self.updateCGMStalenessTimer(expiration: mostRecentGlucose.addingTimeInterval(LoopCoreConstants.inputDataRecencyInterval))
         } else {
             self.cgmDataIsStale = true
+            NotificationManager.addAppBadge(badge: Int(0))
         }
     }
     
@@ -72,6 +73,7 @@ class CGMStalenessMonitor {
                         self.updateCGMStalenessTimer(expiration: sample.startDate.addingTimeInterval(LoopCoreConstants.inputDataRecencyInterval + CGMStalenessMonitor.cgmStalenessTimerTolerance))
                     } else {
                         self.cgmDataIsStale = true
+                        NotificationManager.addAppBadge(badge: Int(0))
                     }
                 case .failure(let error):
                     self.log.error("Unable to get latest CGM clucose: %{public}@ ", String(describing: error))
